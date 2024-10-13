@@ -1,0 +1,6 @@
+python-dotenv
+langchain
+langchain-community
+langchain-anthropic
+#ollama
+#langchain-ollama
