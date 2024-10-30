@@ -2,5 +2,8 @@ python-dotenv
 langchain
 langchain-community
 langchain-anthropic
+langchain-chroma
+langchain-ollama
+beautifulsoup4
 #ollama
 #langchain-ollama
