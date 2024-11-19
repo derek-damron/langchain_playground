@@ -134,15 +134,15 @@ def string_to_grid(grid_string: str) -> List[List[str]]:
 if __name__ == "__main__":
     # Example grid
     grid = [
-        ['H', 'E', 'L', 'L', 'O'],
-        ['W', 'O', 'R', 'L', 'D'],
-        ['H', 'E', 'Y', 'H', 'I'],
-        ['B', 'Y', 'E', 'H', 'I'],
-        ['H', 'I', 'H', 'I', '!']
+        ['O', 'R', 'U', 'O', 'F'],
+        ['N', 'F', 'O', 'X', 'O'],
+        ['E', 'W', 'O', 'X', 'U'],
+        ['T', 'W', 'O', 'U', 'R'],
+        ['X', 'F', 'O', 'U', 'R']
     ]
     
     # Example words to search
-    test_words = ["HELLO", "WORLD", "HI"]
+    test_words = ["ZERO", "ONE", "TWO", "FOUR"]
     
     print("Word Search Grid:")
     print_grid(grid)
@@ -151,4 +151,8 @@ if __name__ == "__main__":
     for word in test_words:
         print(f"\nSearching for '{word}':")
         matches = find_word(grid, word)
+
+        print(matches)
+
         print_found_matches(grid, matches)
+        
