@@ -127,7 +127,7 @@ class AgentWordSearch(object):
         words = AgentWordpicker().pick_words(model, topic, n_words, n_rows, n_cols)
         puzzle = AgentPuzzlemaker().make_puzzle(model, words, n_rows, n_cols, prompt=puzzlemaker_prompt)
 
-        self.words = words
+        self.words = [w.upper() for w in words]
         self.puzzle = puzzle
 
         pass
