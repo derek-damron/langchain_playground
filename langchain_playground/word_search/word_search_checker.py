@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 def find_word(grid: List[List[str]], word: str) -> List[List[Tuple[int, int]]]:
     """
@@ -63,6 +63,12 @@ def find_word(grid: List[List[str]], word: str) -> List[List[Tuple[int, int]]]:
                     matches.append(path)
     
     return matches
+
+def find_words(grid: List[List[str]], words: List[str]) -> Dict[str, List[List[Tuple[int, int]]]]:
+    word_matches = dict()
+    for w in words:
+        word_matches[w] = find_word(grid, w)
+    return word_matches
 
 def print_grid(grid: List[List[str]]) -> None:
     """
