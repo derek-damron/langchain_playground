@@ -65,6 +65,9 @@ def find_word(grid: List[List[str]], word: str) -> List[List[Tuple[int, int]]]:
     return matches
 
 def find_words(grid: List[List[str]], words: List[str]) -> Dict[str, List[List[Tuple[int, int]]]]:
+    """
+    Wrapper for find_words() on all words in a puzzle
+    """
     word_matches = dict()
     for w in words:
         word_matches[w] = find_word(grid, w)
