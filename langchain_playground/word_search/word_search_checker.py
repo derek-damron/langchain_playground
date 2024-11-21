@@ -66,12 +66,23 @@ def find_word(grid: List[List[str]], word: str) -> List[List[Tuple[int, int]]]:
 
 def find_words(grid: List[List[str]], words: List[str]) -> Dict[str, List[List[Tuple[int, int]]]]:
     """
-    Wrapper for find_words() on all words in a puzzle
+    Wrapper for find_words() on a list of words
     """
     word_matches = dict()
     for w in words:
         word_matches[w] = find_word(grid, w)
     return word_matches
+
+def get_puzzle_accuracy(found_words: Dict[str, List[List[Tuple[int, int]]]]) -> float:
+    """
+    Args:
+        found_words: Dict[str, List[List[Tuple[int, int]]]]: Output of find_words()
+
+    Returns:
+        float: % of words with only one match in the puzzle
+    """
+    only_one_match = [1 if len(v) == 1 else 0 for v in found_words.values()]
+    return sum(only_one_match) / len(only_one_match)
 
 def print_grid(grid: List[List[str]]) -> None:
     """
