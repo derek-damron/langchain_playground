@@ -23,7 +23,7 @@ print(word_matches)
 get_puzzle_accuracy(word_matches)
 
 # Simulate 10 runs
-get_puzzle_accuracies = []
+puzzle_accuracies = []
 for i in range(10):
     ws = AgentWordSearch()
     ws.create_word_search(model, 'math', 5, n_rows, n_rows)
@@ -31,9 +31,9 @@ for i in range(10):
         word_matches = find_words(string_to_grid(ws.puzzle), ws.words)
     except:
         # any puzzle error means accuracy = 0
-        get_puzzle_accuracies.append(0)
+        puzzle_accuracies.append(0)
     else:
-        get_puzzle_accuracies.append(get_puzzle_accuracy(word_matches))
+        puzzle_accuracies.append(get_puzzle_accuracy(word_matches))
     
     # Print status
     if i % 5 == 4:
@@ -41,8 +41,34 @@ for i in range(10):
 
 import numpy as np
 print(f'''
-    # Simulations: {len(get_puzzle_accuracies)}
-    Accuracies: {get_puzzle_accuracies}
-    Median: {np.median(get_puzzle_accuracies)}
-    Mean: {np.mean(get_puzzle_accuracies)}
+    # Simulations: {len(puzzle_accuracies)}
+    Accuracies: {puzzle_accuracies}
+    Median: {np.median(puzzle_accuracies)}
+    Mean: {np.mean(puzzle_accuracies)}
 ''')
+
+
+# Simulate 10 runs at three different temperatures
+puzzle_accuracies = []
+for tmp in [0, 0.25, .5]:
+    print(f'''Temperature: {tmp}''')
+    model = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=tmp)
+    puzzle_accuracies = []
+    for i in range(10):
+        ws = AgentWordSearch()
+        ws.create_word_search(model, 'math', 5, n_rows, n_rows)
+        try:
+            word_matches = find_words(string_to_grid(ws.puzzle), ws.words)
+        except:
+            # any puzzle error means accuracy = 0
+            puzzle_accuracies.append(0)
+        else:
+            puzzle_accuracies.append(get_puzzle_accuracy(word_matches))
+    print(f'''
+        # Simulations: {len(puzzle_accuracies)}
+        Accuracies: {puzzle_accuracies}
+        Median: {np.median(puzzle_accuracies)}
+        Mean: {np.mean(puzzle_accuracies)}
+    ''')
+    puzzle_accuracies = []
+
