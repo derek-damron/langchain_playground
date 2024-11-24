@@ -84,6 +84,26 @@ def get_puzzle_accuracy(found_words: Dict[str, List[List[Tuple[int, int]]]]) -> 
     only_one_match = [1 if len(v) == 1 else 0 for v in found_words.values()]
     return sum(only_one_match) / len(only_one_match)
 
+def check_puzzle_size(grid: List[List[str]], n_rows: int, n_cols: int) -> bool:
+    """
+    Args:
+        grid: List[List[str]]: Puzzle grid
+        n_rows: int: The expected number of rows in the puzzle
+        n_cols: int: The expected number of columns in the puzzle
+
+    Returns:
+        bool: True is puzzle size is correct, otherwise False
+    """
+    # Check rows
+    if len(grid) != n_rows:
+        return False
+    
+    # Check columns
+    if not all([len(l) == n_cols for l in grid]):
+        return False
+
+    return True
+
 def print_grid(grid: List[List[str]]) -> None:
     """
     Print the word search grid with spaces between letters.

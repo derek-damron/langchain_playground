@@ -14,12 +14,13 @@ ws.create_word_search(model, 'math', 5, n_rows, n_rows)
 print(ws.words)
 print(ws.puzzle)
 
-from word_search_checker import string_to_grid, find_words, get_puzzle_accuracy
+from word_search_checker import string_to_grid, find_words, get_puzzle_accuracy, check_puzzle_size
 
-word_matches = find_words(string_to_grid(ws.puzzle), ws.words)
-print(word_matches)
+# Check size
+check_puzzle_size(string_to_grid(ws.puzzle), n_rows, n_rows)
 
 # Get % words with exactly one match
+word_matches = find_words(string_to_grid(ws.puzzle), ws.words)
 get_puzzle_accuracy(word_matches)
 
 # Simulate 10 runs
@@ -106,7 +107,7 @@ alt_puzzlemaker_prompt = PromptTemplate(
     X A X X X
     X X C X X
 
-    Output Format: Return only the puzzle with one space between each letter
+    Output Format: Return only the puzzle with one space between each letter.  Do not provide any other output such as "Here's a 7X7 word search puzzle grind containing the requested words:"
     """,
     input_variables = ['words', 'n_rows', 'n_cols']
 )
