@@ -23,9 +23,9 @@ check_puzzle_size(string_to_grid(ws.puzzle), n_rows, n_rows)
 word_matches = find_words(string_to_grid(ws.puzzle), ws.words)
 get_puzzle_accuracy(word_matches)
 
-# Simulate 10 runs
+# Simulate runs
 puzzle_accuracies = []
-for i in range(10):
+for i in range(2):
     ws = AgentWordSearch()
     ws.create_word_search(model, 'math', 5, n_rows, n_rows)
     try:
@@ -49,13 +49,13 @@ print(f'''
 ''')
 
 
-# Simulate 10 runs at three different temperatures
+# Simulate 2 runs at three different temperatures
 puzzle_accuracies = []
 for tmp in [0, 0.25, .5]:
     print(f'''Temperature: {tmp}''')
     model = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=tmp)
     puzzle_accuracies = []
-    for i in range(10):
+    for i in range(2):
         ws = AgentWordSearch()
         ws.create_word_search(model, 'math', 5, n_rows, n_rows)
         try:
@@ -113,7 +113,7 @@ alt_puzzlemaker_prompt = PromptTemplate(
 )
 puzzle_accuracies = []
 model = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0)
-for i in range(10):
+for i in range(2):
     ws = AgentWordSearch()
     ws.create_word_search(model, 'math', 5, n_rows, n_rows, puzzlemaker_prompt=alt_puzzlemaker_prompt)
     try:
