@@ -5,5 +5,8 @@ langchain-anthropic
 langchain-chroma
 langchain-ollama
 beautifulsoup4
+notebook
+tqdm
+pandas
 #ollama
 #langchain-ollama
